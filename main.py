@@ -46,15 +46,16 @@ def on_message(client, userdata, msg):
         topic = msg.topic
         if SEND_VALUE == payload:
             # Формуємо повідомлення для Telegram
+            date = datetime.datetime.now()
             telegram_text = f"🚨 **СПОВІЩЕННЯ MQTT** 🚨\n" \
-                            f"**Дата:**  `{datetime.datetime.now()}`\n" \
+                            f"**Дата:**  `{date}`\n" \
                             f"**Топік:** `{topic}`\n" \
                             f"**Дані:**  `{payload} `"
 
             # Надсилаємо
             chat_id = MQTT_CHATS.get(topic)
             send_telegram_message(telegram_text,chat_id)
-            print(f"Отримано: {topic} -> {payload}. Надіслано в чат {chat_id}")
+            print(f"Отримано: {date}: {topic} -> {payload}. Надіслано в чат {chat_id} ")
 
     except Exception as e:
         print(f"Помилка обробки повідомлення: {e}")
