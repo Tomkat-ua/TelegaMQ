@@ -1,0 +1,43 @@
+# .github/workflows/deploy.yml
+name: Deploy to VPS Server
+
+on:
+  push:
+    branches:
+      - master  # Запускати деплой при пуші в гілку master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. Отримати код з репозиторію GitHub
+      - name: Checkout code 📥
+        uses: actions/checkout@v4
+        
+      # 2. Виконати збірку, якщо це необхідно (наприклад, для фронтенду)
+      # - name: Build Project
+      #   run: npm install && npm run build
+      
+      # 3. Деплой через SSH
+      - name: Deploy via SSH 🚀
+        uses: appleboy/ssh-action@v1.0.3 # Популярний action для SSH
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # 1. Перейти до робочої директорії на сервері
+            cd /home/tomkat/docker_img/TelegaMQ/
+            
+            # 2. Оновити код з GitHub
+            # Якщо ви вже один раз зробили git clone на сервері:
+            git pull origin master
+            
+            # 3. Додаткові команди після оновлення:
+            # Наприклад, встановлення залежностей, міграції бази даних або перезапуск служби
+            # composer install --no-dev
+            # php artisan migrate --force
+            # sudo systemctl restart your_service_name
+            sudo bash ./build.sh
+            sudo bash ./run.sh
