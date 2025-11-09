@@ -23,7 +23,7 @@ jobs:
       # Використовуємо короткий хеш коміту як тег версії
       - name: Set Image Tag
         id: set_tag
-        run: echo "IMAGE_TAG=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_ENV
+        run: echo "IMAGE_TAG=$(git rev-parse --short ${{ github.sha }})" >> $IMAGE_TAG
 
       # 3. Деплой через SSH
       - name: Deploy via SSH 🚀
