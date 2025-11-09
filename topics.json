@@ -1,0 +1,14 @@
+{
+	"MQTT_TOPICS": [
+		{
+			"chat_id": "502728417",
+			"topic": "esp32-test/binary_sensor/pin_motion/state",
+			"qos": 1
+		},
+		{
+			"chat_id": "502728417",
+			"topic": "test/sensor2",
+			"qos": 1
+		}
+	]
+}
