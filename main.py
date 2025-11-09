@@ -1,4 +1,7 @@
-# 1. Імпорт необхідних бібліотек
+# TelegaMQ
+# 0.0.18
+
+
 import paho.mqtt.client as mqtt
 import requests  # Для надсилання повідомлень в Telegram
 import datetime,json,config
