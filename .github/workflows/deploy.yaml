@@ -32,6 +32,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: IMAGE_TAG
           script: |
             # 1. Перейти до робочої директорії на сервері
             cd /home/tomkat/docker_img/TelegaMQ/
