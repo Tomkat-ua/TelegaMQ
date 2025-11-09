@@ -39,11 +39,8 @@ jobs:
             # 2. Оновити код з GitHub
             # Якщо ви вже один раз зробили git clone на сервері:
             git pull origin master
-            
+            echo "Current Image Tag is: $IMAGE_TAG"
+
             # 3. Додаткові команди після оновлення:
-            # Наприклад, встановлення залежностей, міграції бази даних або перезапуск служби
-            # composer install --no-dev
-            # php artisan migrate --force
-            # sudo systemctl restart your_service_name
-            sudo bash ./build.sh
-            sudo bash ./run.sh
+            sudo bash ./build.sh $IMAGE_TAG
+            sudo bash ./run.sh $IMAGE_TAG
